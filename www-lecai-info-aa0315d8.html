@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>再次走进 · 乐彩网</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+      background-color: #f7f7f7;
+      color: #1e1e1e;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .hero {
+      background-color: #121212;
+      background-image: radial-gradient(circle at 20% 30%, #2b2b2b 0%, #0b0b0b 100%);
+      color: #eaeaea;
+      padding: 4rem 1.5rem 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #d4a373, #b5835a, #d4a373);
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 450;
+      letter-spacing: 1px;
+      margin-bottom: 0.6rem;
+      color: #f0ece2;
+    }
+
+    .hero p {
+      max-width: 560px;
+      margin: 0 auto;
+      font-size: 1rem;
+      color: #b8b8b0;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2.8rem 1.5rem 4rem;
+    }
+
+    .article-title {
+      font-size: 1.9rem;
+      font-weight: 400;
+      line-height: 1.35;
+      margin-bottom: 0.6rem;
+      color: #1e1e1e;
+      border-left: 4px solid #b5835a;
+      padding-left: 1rem;
+    }
+
+    .meta {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.85rem;
+      color: #6b6b6b;
+      margin-bottom: 1.8rem;
+      padding-left: 1.4rem;
+    }
+
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .lead {
+      font-size: 1.12rem;
+      color: #2e2e2e;
+      background: #f0ece3;
+      padding: 1.2rem 1.6rem;
+      border-radius: 6px;
+      margin-bottom: 2rem;
+      border-left: 5px solid #b5835a;
+    }
+
+    .content p {
+      margin-bottom: 1.4rem;
+      font-size: 1rem;
+      color: #222;
+    }
+
+    .content p strong {
+      color: #a05d3a;
+      font-weight: 500;
+    }
+
+    .quote-card {
+      background: #f4f1ea;
+      padding: 1.5rem 2rem;
+      border-radius: 8px;
+      margin: 2rem 0 2.2rem;
+      position: relative;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .quote-card::before {
+      content: "💡";
+      position: absolute;
+      left: -0.8rem;
+      top: -0.6rem;
+      font-size: 1.8rem;
+      background: #f7f7f7;
+      padding: 0 0.25rem;
+    }
+
+    .quote-card p {
+      margin-bottom: 0.4rem;
+      font-style: normal;
+      color: #2a2a2a;
+    }
+
+    .quote-card .quote-source {
+      display: block;
+      text-align: right;
+      font-size: 0.85rem;
+      color: #6f6f6f;
+      margin-top: 0.6rem;
+    }
+
+    .link-btn {
+      display: inline-block;
+      background-color: #b5835a;
+      color: #fff;
+      padding: 0.55rem 1.6rem;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      margin-top: 0.3rem;
+    }
+
+    .link-btn:hover {
+      background-color: #9e6f4a;
+      transform: translateY(-1px);
+    }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #d0c8b8, transparent);
+      margin: 2.8rem 0;
+    }
+
+    .faq-mini {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.6rem 1.8rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      margin-top: 1.8rem;
+    }
+
+    .faq-mini h3 {
+      font-size: 1.2rem;
+      font-weight: 450;
+      margin-bottom: 1rem;
+      color: #1e1e1e;
+      border-bottom: 1px dashed #d6cec1;
+      padding-bottom: 0.5rem;
+    }
+
+    .faq-mini details {
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid #efebe6;
+      padding-bottom: 0.5rem;
+    }
+
+    .faq-mini details:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .faq-mini summary {
+      font-weight: 450;
+      cursor: pointer;
+      color: #2b2b2b;
+      padding: 0.3rem 0;
+      transition: color 0.15s;
+    }
+
+    .faq-mini summary:hover {
+      color: #b5835a;
+    }
+
+    .faq-mini details p {
+      margin: 0.4rem 0 0.2rem 0.8rem;
+      font-size: 0.92rem;
+      color: #464646;
+    }
+
+    .visit-note {
+      background: #faf8f5;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      margin: 2.6rem 0 1.2rem;
+      border: 1px solid #e5ddd2;
+      font-size: 0.95rem;
+      color: #313131;
+      text-align: center;
+    }
+
+    .visit-note a {
+      color: #a05d3a;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #a05d3a;
+    }
+
+    .visit-note a:hover {
+      border-bottom-style: solid;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #7d7d7d;
+      margin-top: 3.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #e4ddd2;
+    }
+
+    @media (max-width: 550px) {
+      .hero h1 { font-size: 1.8rem; }
+      .hero { padding: 3rem 1rem 2.5rem; }
+      .container { padding: 2rem 1rem 3rem; }
+      .article-title { font-size: 1.5rem; padding-left: 0.8rem; }
+      .lead { padding: 1rem 1.2rem; }
+      .quote-card { padding: 1.2rem 1.4rem; }
+      .faq-mini { padding: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>还记不记得，那个收藏夹里的名字</h1>
+  <p>有些站点，第一次遇见是巧合；第二次回来，是选择。<br>今天，不妨重新打开。</p>
+</header>
+
+<main class="container">
+
+  <article>
+    <h2 class="article-title">被重新想起的「乐彩网」</h2>
+    <div class="meta">
+      <span>📅 2025 · 春</span>
+      <span>📂 持续关注</span>
+    </div>
+
+    <div class="lead">
+      你可能早已习惯每天刷一遍，也可能某天关闭标签页后，就再也没回来过。<br>
+      但总有一些站点，值得你再次点开——不是为了新鲜感，而是因为它的内容始终在那里，稳定、干净、没有打扰。
+    </div>
+
+    <div class="content">
+      <p>
+        前几天整理浏览器书签，翻到一个叫「<strong>乐彩网</strong>」的链接。点进去之后发现，页面依旧清爽，信息结构也没变得臃肿。这让我想起最初收藏它的理由：不折腾用户，不堆砌弹窗，安安静静地提供内容。
+      </p>
+      <p>
+        很多网站第一次去的时候感觉还行，但第二次、第三次再去，就发现首页塞满了推送、横幅、自动播放的视频。而有些站点，像 <a href="https://www-lecai.com" style="color:#a05d3a;font-weight:500;text-decoration:underline;">乐彩网</a> 这样，始终保持着一种克制的节奏——该有的信息一条不少，不该有的杂物一件不加。
+      </p>
+      <p>
+        这种「不会变味」的体验，在当下的网络环境里其实挺难得的。你可能也遇到过：收藏夹里某个原本好用的网站，过半年再打开，已经面目全非。所以这次重新看到它，我决定把它留在常访问的位置。
+      </p>
+      <p>
+        我猜很多人和我一样，收藏的站点越来越多，真正反复回去的却很少。不是内容不好，而是我们忘了「持续关注」这件事。把 <a href="https://www-lecai.com" style="color:#a05d3a;font-weight:500;text-decoration:underline;">乐彩网</a> 放在一个顺手的位置，提醒自己有些好内容值得被固定下来。
+      </p>
+    </div>
+
+    <div class="quote-card">
+      <p>“一个网站最好的状态，是让你想不起上次什么时候来过，但每次来都感觉刚刚好。不需要重新适应，也不需要清理缓存。”<span class="quote-source">—— 某位常客</span></p>
+    </div>
+
+    <div class="content">
+      <p>
+        如果你也在找一个可以长久停留、不必担心风格突变或广告轰炸的地方，不妨把 <a href="https://www-lecai.com" style="color:#a05d3a;font-weight:500;text-decoration:underline;">乐彩网</a> 加到书签栏。它不会每天催促你回来，但当你想起它的时候，它就在那里，和印象中一样。
+      </p>
+    </div>
+  </article>
+
+  <div class="section-divider"></div>
+
+  <div class="faq-mini">
+    <h3>☝️ 几个你可能想问的</h3>
+    <details>
+      <summary>我上次来过，还需要重新注册吗？</summary>
+      <p>不需要。乐彩网没有复杂的注册流程，直接访问即可浏览全部公开内容。如果之前有过自定义设置，通常也会保留。</p>
+    </details>
+    <details>
+      <summary>页面会不会突然变样？</summary>
+      <p>根据近几年的习惯，该站改版非常克制，每次调整都以功能优化为主，不会突然翻新布局或替换核心模块。</p>
+    </details>
+    <details>
+      <summary>怎么提醒自己常回来？</summary>
+      <p>把链接放在浏览器书签栏、或者手机主屏幕，甚至设个每月一刷的闹钟。好内容不怕慢，但怕忘。</p>
+    </details>
+  </div>
+
+  <div class="visit-note">
+    <span>如果你已经有一阵子没去了——</span><br>
+    <span>点开收藏夹，找到那个叫 <a href="https://www-lecai.com">乐彩网</a> 的标签，就当是和老地方打个招呼。</span>
+  </div>
+
+  <div class="footer-note">
+    保持关注 · 不紧不慢
+  </div>
+
+</main>
+
+</body>
+</html>

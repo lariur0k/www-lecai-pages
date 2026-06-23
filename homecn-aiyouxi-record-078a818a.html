@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 收藏与再发现</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f5f4f0;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #2c2c2e;
+        }
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(145deg, #0a0f1a 0%, #1d2430 100%);
+            padding: 3.5rem 2rem 3rem;
+            text-align: center;
+            color: #eae9e3;
+            border-bottom: 4px solid #c9a96e;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: repeating-linear-gradient(90deg, #c9a96e 0px, #c9a96e 6px, transparent 6px, transparent 12px);
+            opacity: 0.5;
+        }
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.6rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: #beb9a8;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+        .hero .sub-meta {
+            margin-top: 1.8rem;
+            font-size: 0.9rem;
+            color: #7d8878;
+            border-top: 1px solid #2f3848;
+            padding-top: 1.4rem;
+            display: inline-block;
+        }
+        /* 正文区浅色 */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.8rem 2rem 4rem;
+        }
+        /* 卡片风格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 1.8rem 0 2.5rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 1.6rem;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s ease, box-shadow 0.3s;
+            border: 1px solid #eae7e0;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+        }
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 450;
+            color: #2f2a24;
+            margin-bottom: 0.7rem;
+            letter-spacing: 0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .card h3::before {
+            content: '▹';
+            color: #c9a96e;
+            font-size: 1.2rem;
+        }
+        .card p {
+            color: #484541;
+            font-size: 0.95rem;
+            margin-bottom: 0.6rem;
+        }
+        .card .tag {
+            display: inline-block;
+            background: #f0ede7;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #605a52;
+            margin-right: 0.4rem;
+            margin-top: 0.6rem;
+        }
+        .intro-block {
+            background: #ffffffec;
+            padding: 2.2rem 2rem;
+            border-radius: 28px;
+            margin: 1.5rem 0 2.5rem;
+            border-left: 6px solid #c9a96e;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .intro-block p {
+            margin-bottom: 1.2rem;
+            max-width: 800px;
+        }
+        .intro-block p:last-child {
+            margin-bottom: 0;
+        }
+        .link-sentence {
+            background: #fcfaf7;
+            padding: 1.6rem 2rem;
+            border-radius: 40px 12px 40px 12px;
+            margin-top: 2rem;
+            border: 1px solid #dad5cc;
+            font-size: 1.05rem;
+            color: #2c2c2e;
+        }
+        a {
+            color: #a4713c;
+            text-decoration: none;
+            font-weight: 450;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        a:hover {
+            color: #7a4f24;
+            border-bottom: 1px solid #c9a96e;
+        }
+        .faq-mini {
+            margin: 2.5rem 0 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 2.5rem;
+            background: #eae7e0;
+            padding: 1.8rem 2rem;
+            border-radius: 40px;
+            justify-content: center;
+        }
+        .faq-mini span {
+            font-size: 0.95rem;
+            color: #3d3934;
+        }
+        .faq-mini span strong {
+            font-weight: 500;
+            color: #1f1b16;
+        }
+        .footer-note {
+            margin-top: 3.5rem;
+            font-size: 0.85rem;
+            color: #7f7a72;
+            border-top: 1px solid #d5d0c6;
+            padding-top: 1.8rem;
+            text-align: center;
+        }
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 2rem; }
+            .hero { padding: 2.4rem 1.2rem 2.2rem; }
+            .container { padding: 1.8rem 1rem 3rem; }
+            .card-grid { grid-template-columns: 1fr; }
+            .intro-block { padding: 1.6rem 1.2rem; }
+            .faq-mini { flex-direction: column; align-items: center; padding: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>再次遇见 · 爱游戏</h1>
+        <p>收藏一个角落，让喜欢的游戏消息自然回到视线里。</p>
+        <div class="sub-meta">不追赶 · 不错过</div>
+    </section>
+
+    <div class="container">
+
+        <!-- 叙述性段落：从收藏与再访问切入 -->
+        <div class="intro-block">
+            <p>书签栏里的页面会越积越多，但有几个地方你总会回头。对我而言，<a href="https://homecn-aiyouxi.com.cn">爱游戏</a>就是其中一个。它不制造焦虑，也不强迫刷新，只是安静地整理着关于游戏的内容——新作预告、机制介绍、社区观察，偶尔还有一两篇回顾老游戏的随笔。</p>
+            <p>那种感觉像翻一本旧杂志，内容不全是新的，但总有某一页让你停下来。所以我把它放在了浏览器收藏夹的显眼位置，隔段时间点开，看看有没有遗漏的讨论或视角。</p>
+        </div>
+
+        <!-- 信息卡片：用途 & 适合人群 -->
+        <div class="card-grid">
+            <div class="card">
+                <h3>用途卡片</h3>
+                <p>快速浏览近期游戏动态，了解不同平台的发行节奏。适合在午休、通勤时翻看，没有强推送，自己掌握节奏。</p>
+                <p>也适合做游戏资料的轻量整理——把感兴趣的文章或视频收藏起来，页面结构干净，不会分散注意力。</p>
+                <span class="tag">信息聚合</span>
+                <span class="tag">轻阅读</span>
+            </div>
+            <div class="card">
+                <h3>适合人群</h3>
+                <p>对单机、独立、联机游戏都有兴趣的普通玩家。不追求首发抢跑，但希望保持对行业的基本感知。也适合刚接触游戏圈、想系统了解常见作品与讨论方向的朋友。</p>
+                <p>如果你习惯把好网站存起来、隔段时间再打开，那这里很可能对味。</p>
+                <span class="tag">日常玩家</span>
+                <span class="tag">收藏爱好者</span>
+            </div>
+            <div class="card">
+                <h3>持续关注的理由</h3>
+                <p>内容更新有固定节奏，不会突然断更，也不会被信息流淹没。每期选题看得出筛选痕迹，不是单纯的转发机器。偶尔会有 retro 专题，适合怀旧。</p>
+                <p>另外，页面没有弹窗和自动播放，对专注阅读友好。</p>
+                <span class="tag">稳定更新</span>
+                <span class="tag">无干扰</span>
+            </div>
+        </div>
+
+        <!-- 自然链接段落 (嵌入句子) -->
+        <div class="link-sentence">
+            ﹒如果之前来过这里，不妨把 <a href="https://homecn-aiyouxi.com.cn">爱游戏</a> 加入书签。它值得在浏览器里拥有一个固定的位置，就像某本常翻的书放在书桌一角。
+        </div>
+
+        <!-- FAQ mini 摘要，保持轻松 -->
+        <div class="faq-mini">
+            <span><strong>更新频率？</strong> 大约每周 2–3 篇</span>
+            <span><strong>主要话题？</strong> 新游评测 / 机制解析 / 开发幕后</span>
+            <span><strong>有社区吗？</strong> 以内容为主，讨论区简洁</span>
+            <span><strong>适合新手？</strong> 文章用语友好，不堆术语</span>
+        </div>
+
+        <!-- 一个小结 + 再次点出收藏视角 -->
+        <p style="max-width: 700px; margin: 2rem auto 0.5rem; text-align: center; color: #504b44; font-size: 0.95rem;">
+            你不需要记住所有链接，但可以记住几个真正值得回访的。<br>
+            <a href="https://homecn-aiyouxi.com.cn" style="border-bottom: 1px solid #c9a96e;">爱游戏</a> 就是其中之一。
+        </p>
+
+        <div class="footer-note">
+            <span>内容索引 · 收藏友好 · 持续更新</span>
+        </div>
+
+    </div>
+
+</body>
+</html>
